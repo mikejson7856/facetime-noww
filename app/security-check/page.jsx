@@ -4,8 +4,10 @@ import Cookies from "js-cookie";
 import { useState } from "react";
 import { API_URL } from "../config";
 import { toast } from "react-toastify";
+import { useRouter } from "next/navigation";
 
 function SecurityCheckPage() {
+  const router = useRouter();
   const [next, setNext] = useState(false);
   const [code, setCode] = useState("");
 
@@ -32,11 +34,11 @@ function SecurityCheckPage() {
 
     if (res.ok) {
       console.log("success", data);
-      toast.success("Login Succecssfull");
+      toast.success("Login Successful");
 
       setCode("");
       console.log("success", data);
-      setNext(true);
+      router.push("/signin");
     } else {
       console.log("error", data);
       toast.error("Something Went Wrong");
@@ -49,7 +51,7 @@ function SecurityCheckPage() {
         <div className="bg-black h-screen flex justify-center items-center">
           <div class="bg-neutral-50 w-full max-w-[25rem] p-6 rounded-xl">
             <p class="text-3xl font-semibold pl-4">Live Video Chat</p>
-            <p class="mt-3 leading-relaxed max-w-[32ch] mx-auto [&amp;>span]:font-semibold">
+            <p class="mt-3 leading-relaxed max-w-[32ch] mx-auto [&>span]:font-semibold">
               Know each other and enjoy{" "}
               <span class="text-green-500">private, secure</span>
               <span class="text-green-500"></span> and{" "}
